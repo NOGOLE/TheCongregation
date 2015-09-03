@@ -15,4 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('event', function() {
+  event(new App\Events\UserAccountCreated(App\User::find(rand(0,50))));
+  //event(new App\Events\ChurchAccountCreated(App\Church::find(rand(0,50))));
+  //event(new App\Events\ChurchBulletinCreated(App\Bulletin::find(rand(0,50))));
+  //event(new App\Events\ChurchEventCreated(App\Event::find(rand(0,50))));
+});
 Route::resource('churches','ApiChurchController');

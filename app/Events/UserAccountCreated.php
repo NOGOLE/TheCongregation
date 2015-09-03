@@ -6,18 +6,21 @@ use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class UserAccountCreated extends Event
+class UserAccountCreated extends Event implements ShouldBroadcast
 {
     use SerializesModels;
+
+    public $user;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(\App\User $user)
     {
         //
+        $this->user = $user;
     }
 
     /**
@@ -27,6 +30,6 @@ class UserAccountCreated extends Event
      */
     public function broadcastOn()
     {
-        return [];
+        return ['account-created'];
     }
 }

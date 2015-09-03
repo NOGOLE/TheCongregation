@@ -6,18 +6,19 @@ use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class ChurchAccountCreated extends Event
+class ChurchAccountCreated extends Event implements ShouldBroadcast
 {
     use SerializesModels;
-
+    public $church;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(\App\Church $church)
     {
         //
+        $this->church = $church;
     }
 
     /**
@@ -27,6 +28,6 @@ class ChurchAccountCreated extends Event
      */
     public function broadcastOn()
     {
-        return [];
+        return ['church-created'];
     }
 }

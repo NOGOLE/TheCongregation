@@ -34,6 +34,25 @@
                 font-size: 96px;
             }
         </style>
+
+        <script src="http://congregation.app:6001/socket.io/socket.io.js"></script>
+<script>
+  var socket = io('http://congregation.app:6001');
+  console.log(socket);
+  socket.on('account-created', function(message){
+    console.log(message);
+  });
+  socket.on('church-created', function(message){
+    console.log(message);
+  });
+  socket.on('event-created', function(message){
+    console.log(message);
+  });
+  socket.on('bulletin-created', function(message){
+    console.log(message);
+  });
+
+</script>
     </head>
     <body>
         <div class="container">

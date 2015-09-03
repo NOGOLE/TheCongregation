@@ -2,33 +2,29 @@
 
 namespace App\Listeners;
 
-use App\Events\UserAccountCreated;
+use App\Events\ChurchAccountCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Contracts\Mail\Mailer;
 
-class UserAccountCreatedListener
+class ChurchBulletinCreatedListener
 {
     /**
      * Create the event listener.
      *
      * @return void
      */
-
-     private $mailer;
-    public function __construct(Mailer $mailer)
+    public function __construct()
     {
         //
-        $this->mailer = $mailer;
     }
 
     /**
      * Handle the event.
      *
-     * @param  UserAccountCreated  $event
+     * @param  ChurchBulletinCreated  $event
      * @return void
      */
-    public function handle(UserAccountCreated $event)
+    public function handle(ChurchAccountCreated $event)
     {
         //
     }
