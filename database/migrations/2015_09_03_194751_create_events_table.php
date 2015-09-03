@@ -14,6 +14,11 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('church_id')->unsigned();
+            $table->foreign('church_id')
+            ->references('id')->on('churches')
+            ->onDelete('cascade');
+            $table->string('description');
             $table->timestamps();
         });
     }
