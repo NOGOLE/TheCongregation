@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Church;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class ChurchController extends Controller
+class ApiChurchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,6 +17,9 @@ class ChurchController extends Controller
     public function index()
     {
         //
+        $churches = Church::with('bulletins')->with('events')->get();
+
+        return $churches;
     }
 
     /**
@@ -49,6 +52,8 @@ class ChurchController extends Controller
     public function show($id)
     {
         //
+        $church = Church::with('bulletins')->with('events')->find($id);
+        return $church;
     }
 
     /**
