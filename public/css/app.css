@@ -5991,7 +5991,8 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-body {
-  background: #000; }
+.grow:hover {
+  -webkit-transform: scale(1.11);
+  transform: scale(1.11); }
 
 /*# sourceMappingURL=app.css.map */

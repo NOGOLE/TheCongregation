@@ -24,12 +24,22 @@ Route::get('church-register', function(){
   return view('church.register');
 
 });
-/*
+
+Route::get('member-register', function(){
+  //var_dump('True'); exit();
+  return view('member.register');
+
+});
+
+Route::get('about', function(){
+	return view('about');
+});
+
 Route::get('event', function() {
-  //event(new App\Events\UserAccountCreated(App\User::find(rand(0,50))));
+  event(new App\Events\UserAccountCreated(App\User::find(rand(0,50))));
   //event(new App\Events\ChurchAccountCreated(App\Church::find(rand(0,50))));
   //event(new App\Events\ChurchBulletinCreated(App\Bulletin::find(rand(0,50))));
   //event(new App\Events\ChurchEventCreated(App\Event::find(rand(0,50))));
 });
-*/
+
 Route::resource('churches','ApiChurchController');
