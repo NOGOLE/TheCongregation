@@ -9,12 +9,19 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Laravel\Cashier\Billable;
+use Laravel\Cashier\Contracts\Billable as BillableContract;
+
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
-                                    CanResetPasswordContract
+                                    CanResetPasswordContract, 
+                                    BillableContract
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    
+
+    
+    use Authenticatable, Authorizable, Billable, CanResetPassword;
 
     /**
      * The database table used by the model.
@@ -36,6 +43,7 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+    protected $dates = ['trial_ends_at', 'subscription_ends_at'];
 
     public function churches()
     {

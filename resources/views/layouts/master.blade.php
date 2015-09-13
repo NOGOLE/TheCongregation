@@ -22,12 +22,13 @@
   @if (Auth::check())
   Welcome
   @else
-  <form class="navbar-form navbar-right" role="search">
+  <form class="navbar-form navbar-right" method="POST" role="form" action="login">
+    {!! csrf_field() !!}
                       <div class="form-group">
                           <input type="text" class="form-control" name="email" placeholder="Email">
                       </div>
                       <div class="form-group">
-                          <input type="text" class="form-control" name="password" placeholder="Password">
+                          <input type="password" class="form-control" name="password" placeholder="Password">
                       </div>
                       <button type="submit" class="btn btn-success">Sign In</button>
                   </form>

@@ -31,10 +31,13 @@ Route::get('member-register', function(){
 
 });
 
+Route::post('login','Auth\AuthController@login');
+
 Route::get('about', function(){
 	return view('about');
 });
 
+Route::post('register','Auth\AuthController@create');
 Route::get('event', function() {
   event(new App\Events\UserAccountCreated(App\User::find(rand(0,50))));
   //event(new App\Events\ChurchAccountCreated(App\Church::find(rand(0,50))));

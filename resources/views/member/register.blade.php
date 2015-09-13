@@ -2,9 +2,9 @@
 @section('title', 'Member Registration')
 
 @section('content')
-<form method="POST" action="#">
+<form method="POST" action="register">
     {!! csrf_field() !!}
-
+ <input type="hidden" name="type" value="user" />
     <div class="form-group">
         
         <input placeholder="Name" class="form-control" type="text" name="name" value="{{ old('name') }}">
