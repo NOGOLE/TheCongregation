@@ -58,22 +58,21 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(Request $request)
+    protected function create(array $data)
     {
 
                 $user = User::create([
-                  'name' => $request->input('name'),
-                  'email' => $request->input('email'),
-                  'address'=>$request->input('address'),
-                  'password'=>bcrypt($request->input('password')),
-                  'bio' =>$request->input('bio'),
-                  'type'=>$request->input('type'),
+                  'name' => $data['name'],
+                  'email' => $data['email'],
+                  'address'=>$data['address'],
+                  'password'=>bcrypt($data['password']),
+                  'bio' =>$data['bio'],
                 ]);
                 //get credit card details
-            if($request->has('stripeToken')){
-        $user->subscription('church-membership')->create($request->input('stripeToken'));
-      }
-        return $user;
+
+        $user->subscription('church-membership')->create($data['stripeToken']);
+
+        return view('dashboard');
 
     }
 }

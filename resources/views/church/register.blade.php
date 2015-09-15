@@ -37,17 +37,18 @@
 
 
     <div class="form-group">
-        
+
         <input placeholder="Name" class="form-control" type="text" name="name" value="{{ old('name') }}">
-   
-        
+
+
         <input placeholder="Email" class="form-control" type="email" name="email" value="{{ old('email') }}">
-   
+
         <input placeholder="Address" class="form-control" type="address" name="address" value="{{ old('address') }}">
-   
+        <textarea placeholder="Bio" class="form-control" type="text" name="bio" value="{{old('bio')}}"></textarea>
+
         <input placeholder="Password" class="form-control" type="password" name="password">
-    
-        
+
+
         <input placeholder="Confirm Password" class="form-control" type="password" name="password_confirmation">
      <div class="form-row">
                 <label>Card Number</label>
@@ -68,7 +69,7 @@
     </div>
     </div>
 
-   
+
 </form>
 
 @endsection

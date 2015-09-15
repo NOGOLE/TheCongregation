@@ -14,30 +14,22 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('dashboard', function(){
+  return view('church.dashboard');
+});
 Route::get('/registration', function(){
-  return view('registration');
-});
-
-Route::get('church-register', function(){
-  //var_dump('True'); exit();
   return view('church.register');
-
 });
 
-Route::get('member-register', function(){
-  //var_dump('True'); exit();
-  return view('member.register');
 
-});
 
-Route::post('login','Auth\AuthController@login');
+Route::post('login','Auth\AuthController@postLogin');
 
 Route::get('about', function(){
 	return view('about');
 });
 
-Route::post('register','Auth\AuthController@create');
+Route::post('register','Auth\AuthController@postRegister');
 Route::get('event', function() {
   event(new App\Events\UserAccountCreated(App\User::find(rand(0,50))));
   //event(new App\Events\ChurchAccountCreated(App\Church::find(rand(0,50))));

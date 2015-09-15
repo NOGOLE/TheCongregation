@@ -20,7 +20,7 @@
        @endunless
   </ul>
   @if (Auth::check())
-  Welcome
+  Welcome back {{Auth::user()->name}}
   @else
   <form class="navbar-form navbar-right" method="POST" role="form" action="login">
     {!! csrf_field() !!}
