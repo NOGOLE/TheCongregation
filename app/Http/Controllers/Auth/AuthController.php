@@ -25,6 +25,8 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+
+    protected $redirectPath = '/dashboard';
     /**
      * Create a new authentication controller instance.
      *
@@ -50,32 +52,6 @@ class AuthController extends Controller
         ]);
     }
 
-    public function login(Request $request)
-    {
-        
-        $creds = [
-        'email'=>$request->input('email'),
-        'password'=>$request->input('password')
-        ];
-        var_dump(\Auth::attempt($creds)); 
-        if(\Auth::attempt($creds)){
-             return redirect('/');
-        }
-        else
-        {
-            Config::set( 'auth.model' , 'App\Church' );
-        Config::set( 'auth.table' , 'churches' );
-        var_dump(\Auth::attempt($creds)); exit();
-        if(\Auth::attempt($creds)){
-            return redirect('/');
-
-        }
-        else{
-            return response('Unauthorized.', 401);
-        }
-        }
-    }
-
     /**
      * Create a new user instance after a valid registration.
      *
@@ -84,25 +60,20 @@ class AuthController extends Controller
      */
     protected function create(Request $request)
     {
-        if($request->input('type')=='user'){
-                return User::create([
-                    'name' => $request->input('name'),
-                    'email' => $request->input('email'),
-                    'password' => bcrypt($request->input('password')),
+
+                $user = User::create([
+                  'name' => $request->input('name'),
+                  'email' => $request->input('email'),
+                  'address'=>$request->input('address'),
+                  'password'=>bcrypt($request->input('password')),
+                  'bio' =>$request->input('bio'),
+                  'type'=>$request->input('type'),
                 ]);
-            }
-            elseif($request->input('type')=='church'){
-                $church = Church::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'address'=>$request->input('address'),
-            'password'=>bcrypt($request->input('password'))
-            ]);
-        $church->subscription('church-membership')->create($request->input('stripeToken'));
-        return $church;
-            }
-        else {
-            return response('Unauthorized.', 401);
-        }
+                //get credit card details
+            if($request->has('stripeToken')){
+        $user->subscription('church-membership')->create($request->input('stripeToken'));
+      }
+        return $user;
+
     }
 }

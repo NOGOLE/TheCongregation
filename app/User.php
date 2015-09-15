@@ -15,12 +15,12 @@ use Laravel\Cashier\Contracts\Billable as BillableContract;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
-                                    CanResetPasswordContract, 
+                                    CanResetPasswordContract,
                                     BillableContract
 {
-    
 
-    
+
+
     use Authenticatable, Authorizable, Billable, CanResetPassword;
 
     /**
@@ -48,5 +48,23 @@ class User extends Model implements AuthenticatableContract,
     public function churches()
     {
         return $this->belongsToMany('App\Church');
+    }
+
+    public function isChurch() {
+      if($this->type == 'church'){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+
+    public function isMember() {
+      if($this->type == 'member'){
+        return true;
+      }
+      else{
+        return false;
+      }
     }
 }
